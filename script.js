@@ -1,8 +1,10 @@
 //*0x20 0x40 0x60 0x80 0xA0 0xC0 0xE0 0x100
+
+const asm = document.getElementById('bfasm');
+
 function convert() {
     debugger;
     const code = document.getElementById('bf').value;
-    const asm = document.getElementById('bfasm');
     for (const char of code) {
         switch (char) {
             case '+':
@@ -51,5 +53,10 @@ async function listener() {
         await navigator.clipboard.writeText(document.getElementById('bfasm').value);
     } catch (error) {
         console.error('I found this', error.message);
+    }
+}
+function* asmToStr() {
+    for(const char of asm.value.split(/ /)) {
+        yield char;
     }
 }
